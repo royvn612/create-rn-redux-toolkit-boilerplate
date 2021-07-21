@@ -16,6 +16,9 @@
     "url": "https://github.com/royvn612/create-rn-redux-toolkit-boilerplate",
     "type": "git"
   },
+  "bin": {
+    "create-rn-redux-toolkit-boilerplate": "bin/generate-app.js"
+  },
   "scripts": {
     "android": "react-native run-android",
     "ios": "react-native run-ios",

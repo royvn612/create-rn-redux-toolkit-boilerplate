@@ -37,6 +37,8 @@ npx react-native-rename "Hello World" -b com.yourorganization.helloword
 # Remove cache
 watchman watch-del-all
 yarn start --reset-cache
+# Install pod deps
+cd ios && pod install
 
 ```
 
