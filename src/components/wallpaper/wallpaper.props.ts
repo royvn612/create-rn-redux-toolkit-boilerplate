@@ -2,12 +2,6 @@ import {ImageStyle, StyleProp} from 'react-native';
 import {WallpaperPresets} from './wallpaper.presets';
 
 export const wallpapers = {
-  'boarding-bg1': require('./boarding-bg1.png'),
-  'boarding-bg2': require('./boarding-bg2.png'),
-  'boarding-bg3': require('./boarding-bg3.png'),
-  'boarding-bg4': require('./boarding-bg4.png'),
-  'boarding-bg5': require('./boarding-bg5.png'),
-  consent: require('./consent.png'),
   bg: require('./bg.png'),
 };
 

@@ -15,6 +15,7 @@ import {Icon, Text} from '~/components/elements';
 import {defaultStackScreenOptions} from '~/navigators/config';
 import {SettingsNavigator} from '~/navigators/settings-navigator';
 import {EmptyNavigator} from '~/navigators/templates/empty-navigator';
+import {color} from '~/theme';
 
 export type MainStackParamList = {
   [BOTTOM_TAB_MAIN]: undefined;
@@ -30,15 +31,15 @@ const Stack = createStackNavigator<MainStackParamList>();
 const Tab = createBottomTabNavigator<BottomTabMainParamList>();
 
 const tabBarIcons: Record<string, any> = {
-  [STACK_HOME]: {name: 'home', type: 'image'},
-  [STACK_SECOND]: {name: 'insight', type: 'image'},
-  [STACK_THIRD]: {name: 'community', type: 'image'},
-  [STACK_SETTINGS]: {name: 'telehealth', type: 'image'},
+  [STACK_HOME]: {name: 'home', type: 'antdesign'},
+  [STACK_SECOND]: {name: 'staro', type: 'antdesign'},
+  [STACK_THIRD]: {name: 'meh', type: 'antdesign'},
+  [STACK_SETTINGS]: {name: 'setting', type: 'antdesign'},
 };
 const bottomLabelMap = {
   [STACK_HOME]: 'Home',
-  [STACK_SECOND]: 'Insight',
-  [STACK_THIRD]: 'Community',
+  [STACK_SECOND]: 'Second',
+  [STACK_THIRD]: 'Third',
   [STACK_SETTINGS]: 'Settings',
 };
 
@@ -56,7 +57,7 @@ const BottomTabMainNavigator = ({route: {name}}: {route: BottomTabMainProps}) =>
         const icon = tabBarIcons[route.name];
         return (
           <View>
-            <Icon name={focused ? `${icon.name}-active` : icon.name} type={icon.type} />
+            <Icon name={icon.name} type={icon.type} color={focused ? color.palette.orange : undefined} />
           </View>
         );
       },

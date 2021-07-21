@@ -37,19 +37,12 @@ const routeMap = {
   STACK_MAIN: {
     BOTTOM_TAB_MAIN: {
       STACK_HOME: {
-        TOP_TAB_HOME: {
-          STACK_TODAY: {
-            SCREEN_EMPTY,
-          },
-          STACK_JOURNEY: {
-            SCREEN_EMPTY,
-          },
-        },
-      },
-      STACK_2: {
         SCREEN_EMPTY,
       },
-      STACK_3: {
+      STACK_SECOND: {
+        SCREEN_EMPTY,
+      },
+      STACK_THIRD: {
         SCREEN_EMPTY,
       },
       STACK_SETTINGS: {

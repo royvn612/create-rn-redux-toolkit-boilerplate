@@ -1,10 +1,5 @@
-import {constant, findKey, forEach, get, has, isArray, isPlainObject, isString, set, times} from 'lodash';
-import moment from 'moment';
+import {findKey, forEach, get, has, isArray, isPlainObject, isString, set} from 'lodash';
 import {snakeCase} from '~/utils/helpers/string';
-import {CalendarDataProps} from '~/components/shared/CalendarFigure';
-import {color} from '~/theme';
-import {MarkedDates} from '~/components/elements/calendar/calendar.props';
-import {CALENDAR_DATE_FORMAT} from '~/utils/helpers/date-time';
 import {UserSchema} from '~/redux/users/types';
 
 export function isDataExpired(lastRequest: number = 0, validIn: number) {
@@ -94,47 +89,6 @@ export function findValuePath(obj: object, needle = 'default'): string[] {
   });
   return res;
 }
-
-export const getCalendarFigureColorMap = (data: CalendarDataProps) => {
-  const res: string[] = [];
-  forEach(data, item => {
-    const chunk = times(item.amount || 0, constant(item.color));
-    res.push(...chunk);
-  });
-
-  return res;
-};
-
-export const getCalendarIsTakenMap = (data: CalendarDataProps): number[] => {
-  const res: number[] = [];
-  forEach(data, item => {
-    if (item.isTaken !== undefined) {
-      const chunk = times(item.amount || 0, constant(item.isTaken ? 1 : 0));
-      res.push(...chunk);
-    }
-  });
-
-  return res;
-};
-
-export const getMarkedDates = (takenMap: number[], startDate: string) => {
-  const today = moment.now();
-  const dates: MarkedDates = {
-    [startDate]: {selected: true},
-  };
-  const selectedDate = moment(startDate).endOf('days');
-  takenMap.shift(); // Get rid of first element
-  takenMap.forEach((i, idx) => {
-    const nextDate = selectedDate.add(1, 'd');
-    if (nextDate.isBefore(today)) {
-      dates[nextDate.format(CALENDAR_DATE_FORMAT)] = {
-        selected: true,
-        selectedColor: i ? color.selectedLabel : color.disabledBackground,
-      };
-    }
-  });
-  return dates;
-};
 
 export function isSvgUri(uri: string) {
   return uri.slice(-3).toLowerCase() === 'svg';

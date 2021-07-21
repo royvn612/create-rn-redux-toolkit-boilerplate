@@ -1,4 +1,3 @@
-import {isEmpty} from 'lodash';
 import {unwrapResult} from '@reduxjs/toolkit';
 import {GoogleSignin} from '@react-native-google-signin/google-signin';
 import {PostParams} from '~/utils/thunk-api/type';
@@ -54,7 +53,7 @@ export const onLoginSuccess =
       refreshUser = apiResponseData;
     }
 
-    if (refreshUser?.isActive && refreshUser?.isConsentAccepted && !isEmpty(refreshUser?.userAnswer)) {
+    if (refreshUser?.isActive && refreshUser?.isConsentAccepted) {
       await storage.save('USER', refreshUser);
       await storage.saveString('ACCESS_TOKEN', token || '');
     }

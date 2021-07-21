@@ -1,1 +1,1 @@
-export const USER_SOMETHING = 'SOMETHING'
+export const USER_SOMETHING = 'SOMETHING';

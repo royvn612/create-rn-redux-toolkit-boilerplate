@@ -1,4 +1,4 @@
-import {ColProps} from '~/components/elements';
+import {ColProps} from '~/components/elements/grid/Col';
 import {IconProps} from '../icon/icon.props';
 
 export interface LabelProps extends ColProps {

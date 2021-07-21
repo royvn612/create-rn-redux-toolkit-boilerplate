@@ -11,6 +11,7 @@ import {loginByEmail, LoginByEmailParams, socialLogin} from '~/redux/auth/thunk'
 import AppError from '~/utils/error-handler';
 import {SOCIAL_LOGIN_PLATFORMS} from '~/constants';
 import {appConfig} from '~/config';
+import {setCurrentUser} from '~/redux/auth/slice';
 
 const FormField = styled(Col)``;
 const FieldLabel = styled(Text).attrs({weight: 'semiBold', mb: 2})``;
@@ -27,6 +28,20 @@ export const SignInScreen = () => {
     password: {presence: true},
   };
   const {inputs, setInputs, validation} = useInput({} as LoginByEmailParams['data'], {rules});
+
+  const handleFakeSignIn = async () => {
+    await dispatch(
+      setCurrentUser({
+        user: {
+          name: 'Tester',
+          email: 'tester@gmail.com',
+          isConsentAccepted: false,
+          isActive: true,
+        },
+        token: 'hello',
+      }),
+    );
+  };
 
   const handleSignIn = async () => {
     const errors = validation.getErrors();
@@ -98,6 +113,7 @@ export const SignInScreen = () => {
               loading={loading}
               disabled={!inputs.username || !inputs.password}
             />
+            <Button title="Fake Sign In" variant="primary" onPress={handleFakeSignIn} mt={3} />
             <Divider text="or" my={3} />
             <Button
               title="Sign In with Google"

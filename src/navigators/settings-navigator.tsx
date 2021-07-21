@@ -7,11 +7,11 @@ import {
   SCREEN_PROFILE,
   SCREEN_SETTINGS,
 } from '~/navigators/route-names';
-import {SettingsScreen} from '~/screens';
 import {defaultStackScreenOptions} from '~/navigators/config';
 import {ProfileScreen} from '~/screens/profile';
 import {DetailsScreen} from '~/screens/my-details';
 import {PersonalScreen} from '~/screens/personal-info';
+import {SettingsScreen} from '~/screens/settings';
 
 export type QuestionnaireParamList = {
   [SCREEN_SETTINGS]: undefined;

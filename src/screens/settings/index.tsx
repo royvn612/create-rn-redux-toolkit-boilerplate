@@ -58,7 +58,7 @@ export const SettingsScreen = () => {
       <Screen unsafe px="screen" preset="scroll">
         <Col mt={6}>
           <Col.C>
-            <Icon name="dribbble" type="antdesign" size={70} />
+            <Icon name="user" type="antdesign" size={70} />
             <Text mt={4} mb={2} text={getUserDisplayName(currentUser)} variant="subheading" />
             <Text mb={6} text="Strong beginner" />
           </Col.C>
@@ -66,7 +66,7 @@ export const SettingsScreen = () => {
           <HintCard
             mb={5}
             bgColor="peachpuff"
-            iconProps={{name: 'upgrade-box', type: 'image', size: 45}}
+            iconProps={{name: 'upgrade', type: 'material', size: 45}}
             title="Upgrade Your Manage Plan "
             description="To use full of feature you can upgrade plan"
           />

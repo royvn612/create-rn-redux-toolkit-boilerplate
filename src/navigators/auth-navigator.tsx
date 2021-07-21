@@ -11,10 +11,12 @@ import {
   STACK_SIGN_UP,
   TOP_TAB_AUTH,
 } from '~/navigators/route-names';
-import {BoardingScreen, SignInScreen, SignUpScreen} from '~/screens';
 import {defaultStackScreenOptions} from '~/navigators/config';
 import {Icon} from '~/components/elements';
 import {color} from '~/theme';
+import {SignInScreen} from '~/screens/sign-in';
+import {SignUpScreen} from '~/screens/sign-up';
+import {BoardingScreen} from '~/screens/boarding';
 
 export type AuthParamList = {
   [SCREEN_BOARDING]: undefined;
@@ -69,7 +71,7 @@ export const AuthNavigator = ({route, navigation}: any) => (
       component={TopTabAuthNavigator}
       options={{
         headerShown: true,
-        headerTitle: () => <Icon name="logo-black" type="image" width={80} height={40} mt={2} />,
+        headerTitle: () => <Icon name="logo" type="image" width={80} height={40} mt={2} />,
       }}
     />
   </AuthStack.Navigator>

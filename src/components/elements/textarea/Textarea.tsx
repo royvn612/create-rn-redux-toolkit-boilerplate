@@ -1,6 +1,6 @@
 import React, {memo} from 'react';
 import {TextareaProps} from '~/components/elements/textarea/textarea.props';
-import {Input} from '~/components/elements';
+import {Input} from '~/components/elements/input/Input';
 import {color, componentPaddingX, sharedStyles, THEME_NAMES} from '~/theme';
 import {useSpacingStyle} from '~/hooks/useSpacingStyle';
 import {styledPropsTheming} from '~/utils/styled-props-theming';

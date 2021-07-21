@@ -32,14 +32,5 @@ export const ToggleButton = memo(({title, selected, size = 'big', buttonStyle, d
       {!!description && <ButtonText text={description} variant="small" textAlign="center" selected={selected} />}
     </ButtonTitleContainer>
   );
-  return (
-    <Button
-      variant="toggle"
-      selected={selected}
-      my={2}
-      buttonStyle={[buttonStyle]}
-      title={Title}
-      {...rest}
-    />
-  );
+  return <Button variant="toggle" selected={selected} my={2} buttonStyle={[buttonStyle]} title={Title} {...rest} />;
 });

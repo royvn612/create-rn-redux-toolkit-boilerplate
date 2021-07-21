@@ -1,10 +1,9 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
-import {getInitialRouteName, SCREEN_EMPTY, STACK_JOURNEY, STACK_TODAY} from '~/navigators/route-names';
-import {EmptyScreen} from '~/screens';
-import {defaultStackScreenOptions} from '~/navigators/config';
+import {getInitialRouteName, SCREEN_EMPTY} from '~/navigators/route-names';
 import {color} from '~/theme';
+import {EmptyScreen} from '~/screens/empty';
 
 export type TopTabStackParamList = {
   // [TOP_TAB_NAME]: undefined;
@@ -40,17 +39,17 @@ export const TopTabNavigator = ({route}: any) => (
       activeTintColor: color.textLighter,
       indicatorStyle: {backgroundColor: color.primaryBackground},
     }}>
-    <TopTab.Screen name={STACK_TODAY} component={Tab1StackNavigator} options={{title: 'Tab1'}} />
-    <TopTab.Screen name={STACK_JOURNEY} component={Tab2StackNavigator} options={{title: 'Tab2'}} />
+    {/* <TopTab.Screen name={STACK_1} component={Tab1StackNavigator} options={{title: 'Tab1'}} /> */}
+    {/* <TopTab.Screen name={STACK_2} component={Tab2StackNavigator} options={{title: 'Tab2'}} /> */}
   </TopTab.Navigator>
 );
 
-export const TopTabStackNavigator = ({route}: any) => (
-  <Stack.Navigator initialRouteName={getInitialRouteName(route.name)} screenOptions={defaultStackScreenOptions}>
-    <Stack.Screen
-      // name={TOP_TAB_NAME}
-      component={TopTabNavigator}
-      options={{headerShown: true}}
-    />
-  </Stack.Navigator>
-);
+// export const TopTabStackNavigator = ({route}: any) => (
+//   <Stack.Navigator initialRouteName={getInitialRouteName(route.name)} screenOptions={defaultStackScreenOptions}>
+//     <Stack.Screen
+//       // name={TOP_TAB_NAME}
+//       component={TopTabNavigator}
+//       options={{headerShown: true}}
+//     />
+//   </Stack.Navigator>
+// );

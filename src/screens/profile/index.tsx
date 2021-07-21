@@ -2,7 +2,7 @@ import React from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
 import {BottomSafeAreaView, Col, Icon, Screen, Text, Wallpaper} from '~/components/elements';
-import {SCREEN_BIRTH_CONTROL, SCREEN_DETAILS} from '~/navigators/route-names';
+import {SCREEN_DETAILS} from '~/navigators/route-names';
 import {MenuItem, MenuListCard} from '~/components/shared';
 import {getUserDisplayName} from '~/utils/helpers';
 import {RootState} from '~/redux/root-reducer';
@@ -11,10 +11,6 @@ const topMenu: MenuItem[] = [
   {
     name: 'My Details',
     nextScreen: SCREEN_DETAILS,
-  },
-  {
-    name: 'Manage Birth Control',
-    nextScreen: SCREEN_BIRTH_CONTROL,
   },
   {
     name: 'Payment Methods',
@@ -30,11 +26,11 @@ const bottomMenu: MenuItem[] = [
   },
   {
     name: 'Account Email',
-    value: 'congcare@gmail.com',
+    value: 'tester@gmail.com',
   },
   {
     name: 'Phone Number',
-    value: '0939943430',
+    value: '0987654321',
   },
   {
     name: 'Language',

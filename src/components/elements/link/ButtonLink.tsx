@@ -1,7 +1,7 @@
 import React, {memo} from 'react';
 import {StyleSheet} from 'react-native';
 import {ButtonLinkProps} from '~/components/elements/link/button-link.props';
-import {Button} from '~/components/elements';
+import {Button} from '~/components/elements/button/Button';
 import {color} from '~/theme';
 
 const styles = StyleSheet.create({

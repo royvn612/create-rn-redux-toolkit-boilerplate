@@ -1,4 +1,4 @@
-import {createEntityAdapter, createSelector, createSlice, PayloadAction} from '@reduxjs/toolkit';
+import {createEntityAdapter, createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {mapValues} from 'lodash';
 import {AuthModel, AuthSchema} from '~/redux/auth/types';
 import {RootState} from '~/redux/root-reducer';
@@ -7,7 +7,6 @@ import {UserSchema} from '~/redux/users/types';
 import {fetchSuccess} from '~/utils/thunk-api';
 import {fetchUserInfo, updateCurrentUser} from '~/redux/users/thunk';
 import {DEFAULT_SOURCE_REDUCER_STATE} from '~/utils/thunk-api/constants';
-import {updateContraceptiveMethod} from '~/redux/contraceptive-methods/thunk';
 
 /* Slice */
 interface InitialState extends ReducerState {
@@ -37,7 +36,9 @@ const auths = createSlice({
       if (payload.user) {
         state.currentUser = {...state.currentUser, ...payload.user};
       }
-      state.token = payload.token;
+      if (payload.token !== undefined) {
+        state.token = payload.token;
+      }
     },
     removeCurrentUser(state) {
       state.currentUser = initialState.currentUser;
@@ -54,7 +55,6 @@ const auths = createSlice({
       const {normalized} = payload;
       state.currentUser = {...state.currentUser, ...normalized.entities.users[normalized.result]};
     });
-    builder.addCase(updateContraceptiveMethod.fulfilled, (state, {payload}) => {});
   },
 });
 
@@ -69,7 +69,3 @@ export const {
   selectAll: selectAllAuths,
   selectTotal: selectTotalAuths,
 } = authsAdapter.getSelectors((state: RootState) => state.auth);
-
-export const getLogActivityIcons = createSelector([(state: RootState) => state.auth.currentUser], (user?: UserSchema) =>
-  Object.values(user?.userAnswer?.contraceptiveMethod?.activities || {}),
-);

@@ -14,8 +14,8 @@ export const uiTheme = {
     ],
   },
   Button: {
-    buttonStyle: [{borderRadius: 8, borderWidth: 0}],
-    titleStyle: [{fontFamily: typography.primary, color: color.palette.white, fontSize: 14, fontWeight: '600'}],
+    buttonStyle: [{borderRadius: 8, borderWidth: 0, paddingVertical: 12}],
+    titleStyle: [{fontFamily: typography.primary, color: color.palette.white, fontSize: 15, fontWeight: '600'}],
     loadingProps: {color: 'white'},
     disabledStyle: [{backgroundColor: color.disabledBackground}],
     disabledTitleStyle: [{color: color.palette.white}],
@@ -97,5 +97,12 @@ export const uiTheme = {
   Chip: {
     titleStyle: [{fontSize: 14}],
     buttonStyle: [{backgroundColor: color.primaryBackground}],
+  },
+  CheckBox: {
+    containerStyle: [{backgroundColor: 'transparent', borderWidth: 0}],
+    textStyle: [{fontFamily: typography.primary, color: color.textSecondary, fontSize: 14, fontWeight: '400'}],
+  },
+  Image: {
+    style: [{width: 200, height: 200}],
   },
 };

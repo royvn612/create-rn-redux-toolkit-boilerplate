@@ -20,4 +20,4 @@ export * from './link/ButtonLink';
 export * from './textarea/Textarea';
 export * from './avatar/Avatar';
 
-export {Tab, TabView, ListItem, SearchBar, Overlay, Chip} from 'react-native-elements';
+export {Tab, TabView, ListItem, SearchBar, Overlay, Chip, CheckBox} from 'react-native-elements';

@@ -49,7 +49,7 @@ export const SignUpScreen = () => {
       <Screen px="screen" preset="scroll" unsafe>
         <Col.X>
           <Text text="Sign Up" variant="heading" mt={7} mb={3} />
-          <Text text="Create an account to get started with Ease" color={color.textSecondary} mb={6} />
+          <Text text="Create an account to get started" color={color.textSecondary} mb={6} />
           <FormField>
             <FieldLabel text="Full Name" />
             <FieldInput placeholder="Enter your first name" onChangeText={value => setInputs({name: value})} />

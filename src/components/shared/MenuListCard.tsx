@@ -10,6 +10,7 @@ export interface MenuItem {
   nextScreen?: string;
   value?: string;
   iconName?: string | null;
+  iconType?: string;
 }
 
 interface Props {
@@ -31,7 +32,7 @@ export const MenuListCard = memo(({menuList, onPress}: Props) => {
       {menuList.map(l => (
         <TouchableWithoutFeedback onPress={() => handleOnPress(l)} key={`menu-list-${l.name}`}>
           <ListItem bottomDivider>
-            {l.iconName !== null && <Icon size={22} type="image" name={l.iconName || 'checkbox-filled'} />}
+            {l.iconName !== null && <Icon size={22} type={l.iconType || 'antdesign'} name={l.iconName || 'user'} />}
             <ListItem.Content>
               <Text text={l.name} weight="semiBold" />
             </ListItem.Content>

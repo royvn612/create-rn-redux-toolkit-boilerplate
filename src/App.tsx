@@ -19,7 +19,7 @@ import {ThemeProvider} from 'react-native-elements';
 import {BottomSheetModalProvider} from '@gorhom/bottom-sheet';
 import rootStore from '~/redux/root-store';
 import ErrorBoundary from '~/components/ErrorBoundary';
-import {RootNavigator} from '~/navigators';
+import {RootNavigator} from '~/navigators/root-navigator';
 import config from '~/config/app-config';
 import {uiTheme} from '~/theme';
 // declare const global: {HermesInternal: null | {}};

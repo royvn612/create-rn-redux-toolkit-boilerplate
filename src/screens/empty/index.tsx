@@ -1,23 +1,26 @@
 import React from 'react';
 import {StyleSheet} from 'react-native';
-import {BottomSafeAreaView, Button, Col, Icon, Screen, Text, Wallpaper} from '~/components/elements';
+import {BottomSafeAreaView, Button, Col, Icon, Image, Row, Screen, Text, Wallpaper} from '~/components/elements';
 
 const styles = StyleSheet.create({});
 
-export const EmptyScreen = () => {
-  return (
-    <Col.X>
-      <Wallpaper gradientColors={['#F1EEE4', '#F1EEE400']} />
-      <Screen unsafe preset="scroll" hasFooter>
-        <Col.X>
-          <Col px="screen">
-            <Icon name="insight-top-right-icons" size={120} type="image" />
-            <Text mt={3} text={`Component mounted at: ${Date.now().toString()}`} variant="title" />
-          </Col>
-        </Col.X>
-        <Button title="Void button" variant="primary" />
-        <BottomSafeAreaView />
-      </Screen>
-    </Col.X>
-  );
-};
+export const EmptyScreen = () => (
+  <Col.X>
+    <Wallpaper gradientColors={['#F1EEE4', '#F1EEE400']} />
+    <Screen unsafe preset="scroll" hasFooter>
+      <Col.X>
+        <Col mx="screen">
+          <Row.C mt={5}>
+            <Icon name="logo" size={120} type="image" />
+          </Row.C>
+          <Col.C>
+            <Text mt={8} mb={5} text="Meow~" variant="title" />
+            <Image source={{uri: `https://source.unsplash.com/collection/3816160/300x300?sig=${Math.random()}`}} />
+          </Col.C>
+        </Col>
+      </Col.X>
+      <Button title="A button" variant="primary" mx="screen" />
+      <BottomSafeAreaView />
+    </Screen>
+  </Col.X>
+);

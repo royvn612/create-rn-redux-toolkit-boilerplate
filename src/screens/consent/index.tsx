@@ -3,11 +3,13 @@ import styled from 'styled-components';
 import {ScrollView, StyleSheet} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {useDispatch, useSelector} from 'react-redux';
-import {BottomSafeAreaView, Button, Col, Icon, Row, Screen, Text, Wallpaper} from '~/components/elements';
+import {BottomSafeAreaView, Button, Col, Icon, Row, Screen, Text, Wallpaper, CheckBox} from '~/components/elements';
 import {color} from '~/theme';
 import {AppDispatch} from '~/redux/root-store';
 import {updateCurrentUser} from '~/redux/users/thunk';
 import {RootState} from '~/redux/root-reducer';
+import {useBoolBag, useInput} from '~/hooks';
+import {setCurrentUser} from '~/redux/auth/slice';
 
 const Paragraph = styled(Text)`
   margin-top: 20px;
@@ -31,54 +33,33 @@ const LargeRectangle = styled(SmallRectangle)`
 `;
 
 const styles = StyleSheet.create({
-  text: {
-    flex: 1,
-    flexWrap: 'wrap',
-    fontSize: 13.5,
-    fontWeight: '400',
-    paddingTop: 13,
-  },
-  firstText: {
-    fontSize: 13.5,
-    fontWeight: '400',
-  },
-  link: {
-    fontSize: 13.5,
-    fontWeight: '600',
-  },
+  closeIcon: {right: 20, position: 'absolute'},
 });
 
-const CheckBox = styled(Button).attrs({
-  type: 'clear',
-  variant: 'white',
-})`
-  margin-right: 2px;
-  height: 40px;
-`;
-
-const StyledRow = styled(Row.L).attrs({px: 'screen', my: 3})``;
+const CheckboxTitle = styled(Text).attrs({ml: 2, color: color.textSecondary})``;
 
 export const ConsentScreen = () => {
   const dispatch: AppDispatch = useDispatch();
-  const {navigate} = useNavigation();
-  const {id: userId} = useSelector((state: RootState) => state.auth.currentUser) || {};
+  const currentUser = useSelector((state: RootState) => state.auth.currentUser) || {};
+  const {boolBag, toggleBoolBag} = useBoolBag({isCheckPrivacy: false, isCheckSendNotif: false, isCheckService: false});
 
-  const [checked, setChecked] = useState(false);
   const [privacyOpen, setPrivacyOpen] = useState(false);
   const [termsOpen, setTermsOpen] = useState(false);
 
   const nextScreen = async () => {
-    await dispatch(updateCurrentUser({data: {isConsentAccepted: true}, id: userId!}));
-    // navigate(STACK_QUESTIONNAIRE);
+    // await dispatch(updateCurrentUser({data: {isConsentAccepted: true}, id: userId!}));
+
+    // For fake user, please remove it later on
+    await dispatch(setCurrentUser({user: {...currentUser, isConsentAccepted: true}}));
   };
-  const renderCheckBoxIcon = () => (
-    <Icon
-      name={checked ? 'checkbox-filled' : 'checkbox-empty'}
-      type="image"
-      width={24}
-      height={24}
-      onPress={() => setChecked(!checked)}
-    />
+
+  const PrivacyText = (
+    <CheckboxTitle>
+      I agree to the
+      <Text color={color.textSecondary} text=" Privacy Policy" weight="semiBold" onPress={() => setPrivacyOpen(true)} />
+      &nbsp;and
+      <Text color={color.textSecondary} text=" Terms of Use." weight="semiBold" onPress={() => setTermsOpen(true)} />
+    </CheckboxTitle>
   );
 
   const renderRectangle = () =>
@@ -86,62 +67,50 @@ export const ConsentScreen = () => {
       <SmallRectangle>
         <ScrollView>
           <Col>
-            <Text text="Welcome to Ease" variant="subtitle" weight="bold" alignSelf="center" mt={7} mb={3} />
-            <StyledRow>
-              <CheckBox icon={renderCheckBoxIcon()} />
-              <Row>
-                <Text text="I agree to the" color={color.textSecondary} style={styles.firstText} />
-                <Text
-                  text=" Privacy Policy"
-                  color={color.textSecondary}
-                  style={styles.link}
-                  onPress={() => setPrivacyOpen(true)}
-                />
-                <Text text=" and" color={color.textSecondary} style={styles.firstText} />
-                <Text text=" Terms of Use." color={color.textSecondary} style={styles.link} onPress={() => setTermsOpen(true)} />
-              </Row>
-            </StyledRow>
-            <StyledRow>
-              <CheckBox icon={renderCheckBoxIcon()} />
-              <Text
-                text="I agree to the processing of my personal data to send me notifications and updates."
-                color={color.textSecondary}
-                style={styles.text}
-              />
-            </StyledRow>
-            <StyledRow>
-              <CheckBox icon={renderCheckBoxIcon()} />
-              <Text
-                text="I agree to the processing of my personal data to provide me app features and healthcare services."
-                color={color.textSecondary}
-                style={styles.text}
-              />
-            </StyledRow>
+            <Text text="Welcome" variant="subtitle" weight="bold" alignSelf="center" mt={5} mb={5} />
+            <CheckBox title={PrivacyText} checked={boolBag.isCheckPrivacy} onPress={() => toggleBoolBag('isCheckPrivacy')} />
+            <CheckBox
+              title={<CheckboxTitle text="I agree to the processing of my personal data to send me notifications and updates." />}
+              checked={boolBag.isCheckSendNotif}
+              onPress={() => toggleBoolBag('isCheckSendNotif')}
+            />
+            <CheckBox
+              title={
+                <CheckboxTitle text="I agree to the processing of my personal data to provide me app features and services." />
+              }
+              checked={boolBag.isCheckService}
+              onPress={() => toggleBoolBag('isCheckService')}
+            />
           </Col>
         </ScrollView>
         <BottomSafeAreaView>
-          <Button title="Continue" variant="primary" mx="screen" mt={4} onPress={nextScreen} />
+          <Button
+            title="Continue"
+            variant="primary"
+            mx="screen"
+            mt={4}
+            onPress={nextScreen}
+            disabled={!Object.values(boolBag).every(i => i)}
+          />
         </BottomSafeAreaView>
       </SmallRectangle>
     ) : (
       <LargeRectangle>
         <ScrollView>
-          <Row mt={6} mb={2} ml={8}>
-            <Text text={privacyOpen ? 'Privacy Policy' : 'Terms of Use'} variant="heading" ml={8} mr={5} />
+          <Row.C mt={6} mb={2}>
+            <Text text={privacyOpen ? 'Privacy Policy' : 'Terms of Use'} variant="heading" />
             <Icon
-              ml={8}
-              name="cross"
-              type="image"
-              width={24}
-              height={24}
+              containerStyle={styles.closeIcon}
+              name="close"
+              type="antdesign"
               onPress={() => {
                 setPrivacyOpen(false);
                 setTermsOpen(false);
               }}
             />
-          </Row>
+          </Row.C>
           <Col.C>
-            <Paragraph text="Ease Healthcare Privacy Policy" variant="subheading" />
+            <Paragraph text="Privacy Policy" variant="subheading" />
             <Paragraph
               color={color.textSecondary}
               text="Placeholder text. At Website Name, accessible at Website.com, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by Website Name and how we use it."
@@ -167,7 +136,7 @@ export const ConsentScreen = () => {
 
   return (
     <Col.X>
-      <Wallpaper name="consent" />
+      <Wallpaper name="bg" />
       <Screen backgroundColor={color.transparent} px={0}>
         <Col.X>{renderRectangle()}</Col.X>
       </Screen>

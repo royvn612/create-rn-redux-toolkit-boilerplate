@@ -4,22 +4,15 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {showMessage} from 'react-native-flash-message';
 import {useDispatch, useSelector} from 'react-redux';
 import useAsyncEffect from 'use-async-effect';
-import {
-  getInitialRouteName,
-  SCREEN_CONSENT,
-  STACK_AUTH,
-  STACK_MAIN,
-  STACK_QUESTIONNAIRE,
-  STACK_ROOT,
-} from '~/navigators/route-names';
+import {getInitialRouteName, SCREEN_CONSENT, STACK_AUTH, STACK_MAIN, STACK_ROOT} from '~/navigators/route-names';
 import {MainNavigator} from '~/navigators/main-navigator';
 import {AuthNavigator} from '~/navigators/auth-navigator';
 import {RootState} from '~/redux/root-reducer';
 import {AppDispatch} from '~/redux/root-store';
 import {logout, lookupSavedCredential, onLoginSuccess} from '~/redux/auth/thunk';
 import {ScreenLoading} from '~/components/elements';
-import {ConsentScreen} from '~/screens';
 import NavigationRef from '~/utils/navigation-ref';
+import {ConsentScreen} from '~/screens/consent';
 
 export type RootParamList = {
   [STACK_MAIN]: undefined;
@@ -32,7 +25,6 @@ const Stack = createStackNavigator<RootParamList>();
 export const RootStack = () => {
   const currentUser = useSelector((state: RootState) => state.auth.currentUser);
   const loggedIn = !!useSelector((state: RootState) => state.auth.token);
-
   const screens = [];
   if (!loggedIn) {
     screens.push(

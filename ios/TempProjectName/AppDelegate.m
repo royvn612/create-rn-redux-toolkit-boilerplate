@@ -23,6 +23,11 @@ static void InitializeFlipper(UIApplication *application) {
 }
 #endif
 
+#if RCT_DEV
+#import <React/RCTDevLoadingView.h>
+#endif
+
+@import Firebase;
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -32,6 +37,11 @@ static void InitializeFlipper(UIApplication *application) {
 #endif
 
   RCTBridge *bridge = [[RCTBridge alloc] initWithDelegate:self launchOptions:launchOptions];
+
+   #if RCT_DEV
+       [bridge moduleForClass:[RCTDevLoadingView class]];
+   #endif
+
   RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:bridge
                                                    moduleName:@"TempProjectName"
                                             initialProperties:nil];

@@ -29,11 +29,11 @@ const bottomMenu: MenuItem[] = [
   },
   {
     name: 'Account Email',
-    value: 'congcare@gmail.com',
+    value: 'tester@gmail.com',
   },
   {
     name: 'Phone Number',
-    value: '0939943430',
+    value: '0987654321',
   },
   {
     name: 'Language',
