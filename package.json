@@ -1,6 +1,6 @@
 {
-  "name": "rn-redux-toolkit-boilerplate",
-  "version": "0.0.2",
+  "name": "create-rn-redux-toolkit-boilerplate",
+  "version": "0.0.1",
   "author": "Roy Nguyen <royvn612@gmail.com>",
   "description": "React Native - Redux toolkit tree - boilerplate",
   "keywords": [
@@ -13,7 +13,7 @@
     "react"
   ],
   "repository": {
-    "url": "https://github.com/royvn612/rn-redux-toolkit-boilerplate",
+    "url": "https://github.com/royvn612/create-rn-redux-toolkit-boilerplate",
     "type": "git"
   },
   "scripts": {
