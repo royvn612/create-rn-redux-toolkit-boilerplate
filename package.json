@@ -1,7 +1,21 @@
 {
-  "name": "TempProjectName",
-  "version": "0.0.1",
-  "private": true,
+  "name": "rn-redux-toolkit-boilerplate",
+  "version": "0.0.2",
+  "author": "Roy Nguyen <royvn612@gmail.com>",
+  "description": "React Native - Redux toolkit tree - boilerplate",
+  "keywords": [
+    "redux-toolkit",
+    "redux-toolkit-structure",
+    "react-native",
+    "redux-thunk",
+    "boilerplate",
+    "react native template",
+    "react"
+  ],
+  "repository": {
+    "url": "https://example.com/your-username/my-new-project",
+    "type": "git"
+  },
   "scripts": {
     "android": "react-native run-android",
     "ios": "react-native run-ios",
